@@ -49,7 +49,7 @@ def model_predict(model, img_path):
 
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return json.dumps({"message": "Hello"})
 
 @app.route('/predict', methods=['GET', 'POST'])
 def upload():
