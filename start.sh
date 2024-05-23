@@ -6,7 +6,7 @@ export PYTHONUNBUFFERED=true
 # Install Python 3 virtual env
 VIRTUALENV=.data/venv
 if [ ! -d $VIRTUALENV ]; then
-  python3 -m venv $VIRTUALENV
+  python -m venv $VIRTUALENV
 fi
 if [ ! -f $VIRTUALENV/bin/pip ]; then
   curl --silent --show-error --retry 5 https://bootstrap.pypa.io/get-pip.py | $VIRTUALENV/bin/python
@@ -16,4 +16,4 @@ $VIRTUALENV/bin/pip install -r requirements.txt
 # If you don't have a requirements.txt, you can install packages manually
 $VIRTUALENV/bin/pip install keras tensorflow flask numpy json gevent werkzeug
 # Run a glorious Python 3 server
-$VIRTUALENV/bin/python3 main.py
+$VIRTUALENV/bin/python main.py
