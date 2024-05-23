@@ -11,7 +11,7 @@ ADD . /app
 RUN pip install tensorflow keras numpy flask gevent werkzeug 
 # RUN pip install tensorrt
 # Make port 5000 available to the world outside this container
-EXPOSE 5000
+EXPOSE 5001
 
 # Run main.py when the container launches
 CMD ["python", "main.py"]
