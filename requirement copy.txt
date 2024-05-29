@@ -1,9 +1,0 @@
-gunicorn
-keras
-numpy
-tensorflow
-flask 
-gevent 
-werkzeug
-Flask-JWT-Extended
-mysql-connector-python

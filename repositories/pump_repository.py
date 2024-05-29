@@ -2,9 +2,9 @@
 import mysql.connector
 
 # Need to replace all information
-class pumpRepository:
+class PumpRepository:
     def __init__(self):
-        self.connection = mysql.connector.connect(host='localhost', user='nhatthien', password='12345', pumpbase='do_an')
+        self.connection = mysql.connector.connect(host='sql12.freesqldatabase.com', user='sql12710166', password='HLGccp9xiC', database='sql12710166')
 
     def create_pump(self, pump):
         cursor = self.connection.cursor()
@@ -15,7 +15,7 @@ class pumpRepository:
     def get_all_pump(self):
         cursor = self.connection.cursor()
         cursor.execute(''' SELECT * FROM pump ''')
-        pump = cursor.fetchone()
+        pump = cursor.fetchall()
         cursor.close()
         return pump
 

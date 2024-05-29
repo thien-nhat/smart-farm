@@ -1,8 +1,8 @@
-from repositories.pump_repository import pumpRepository
+from repositories.pump_repository import PumpRepository
 
-class pumpService:
+class PumpService:
     def __init__(self):
-        self.pump_repository = pumpRepository()
+        self.pump_repository = PumpRepository()
 
     def create_pump(self, pump_data):
         self.pump_repository.create_pump(pump_data)

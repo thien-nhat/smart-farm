@@ -8,7 +8,7 @@ class DataService:
         self.data_repository.create_data(data)
 
     def get_all_data(self):
-        return self.data_repository.get_all_data(self)
+        return self.data_repository.get_all_data()
     def get_data(self, id):
         return self.data_repository.get_data(id)
 

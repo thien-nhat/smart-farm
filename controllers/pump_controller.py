@@ -1,15 +1,15 @@
 from flask import Blueprint, request
-from services.pump_service import pumpService
+from services.pump_service import PumpService
 import json
 import datetime
 
 
 pump_controller = Blueprint('pump_controller', __name__)
-pump_service = pumpService()
+pump_service = PumpService()
 
 @pump_controller.route('/pump', methods=['POST'])
 def create_pump():
-    pump_pump = request.get_json()
+    pump = request.get_json()
     pump_service.create_pump(pump)
     # return "pump created successfully", 201
     response = {

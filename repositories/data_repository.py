@@ -4,7 +4,7 @@ import mysql.connector
 
 class DataRepository:
     def __init__(self):
-        self.connection = mysql.connector.connect(host='localhost', user='nhatthien', password='12345', database='do_an')
+        self.connection = mysql.connector.connect(host='sql12.freesqldatabase.com', user='sql12710166', password='HLGccp9xiC', database='sql12710166')
 
     def create_data(self, data):
         cursor = self.connection.cursor()
@@ -15,7 +15,7 @@ class DataRepository:
     def get_all_data(self):
         cursor = self.connection.cursor()
         cursor.execute(''' SELECT * FROM data ''')
-        data = cursor.fetchone()
+        data = cursor.fetchall()
         cursor.close()
         return data
 

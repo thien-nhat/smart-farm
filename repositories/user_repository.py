@@ -4,7 +4,7 @@ import mysql.connector
 
 class UserRepository:
     def __init__(self):
-        self.connection = mysql.connector.connect(host='localhost', user='nhatthien', password='12345', database='do_an')
+        self.connection = mysql.connector.connect(host='sql12.freesqldatabase.com', user='sql12710166', password='HLGccp9xiC', database='sql12710166')
 
     def create_user(self, user_data):
         cursor = self.connection.cursor()
