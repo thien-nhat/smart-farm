@@ -75,10 +75,4 @@ def get_latest_data():
 #     app.run(debug=True)
 
 if __name__ == '__main__':
-    # host = '172.20.10.4'  #dt dat
-    # host = '192.168.172.241' #dt nhat thien
-    # host = '127.0.0.1' #localhost
-    host = '192.168.1.14' #wf phan thuc
-    port = 5001
-    app.run(host=host, port=port, debug=True)
-    print(f'Running on http://{host}:{port}/')
+    app.run(debug=True)
