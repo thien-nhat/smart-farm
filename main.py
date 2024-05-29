@@ -26,16 +26,6 @@ app.config['JWT_SECRET_KEY'] = 'thesis-secret-key'
 jwt = JWTManager(app)
 
 
-import mysql.connector
-# connection = mysql.connector.connect(host='localhost', user='nhatthien', password='12345', database='do_an')
-connection = mysql.connector.connect(host='sql12.freesqldatabase.com', user='sql12710166', password='HLGccp9xiC', database='sql12710166')
-
-if connection.is_connected():
-    print("Connected to MySQL database")
-else:
-    print("Connection failed")
-
-
 
 API_URL = "http://localhost:8080/api/data"  # Replace with the actual API URL
 BEARER_TOKEN = "your_bearer_token_here"  # Replace with your actual Bearer token

@@ -1,11 +1,12 @@
 # from flask_mysqldb import MySQL
-import mysql.connector
+# import mysql.connector
+from db_connector import connection
 
 
 class UserRepository:
     def __init__(self):
-        self.connection = mysql.connector.connect(host='sql12.freesqldatabase.com', user='sql12710166', password='HLGccp9xiC', database='sql12710166')
-
+        self.connection = connection
+        
     def create_user(self, user_data):
         cursor = self.connection.cursor()
         cursor.execute(''' INSERT INTO users(name, email, password) VALUES(%s,%s,%s)''', (user_data['name'], user_data['email'], user_data['password']))

@@ -1,11 +1,13 @@
 # from flask_mysqldb import MySQL
-import mysql.connector
+# import mysql.connector
+from db_connector import connection
+
 
 # Need to replace all information
 class PumpRepository:
     def __init__(self):
-        self.connection = mysql.connector.connect(host='sql12.freesqldatabase.com', user='sql12710166', password='HLGccp9xiC', database='sql12710166')
-
+        self.connection = connection
+        
     def create_pump(self, pump):
         cursor = self.connection.cursor()
         cursor.execute(''' INSERT INTO pump(temp, humi, soilMoisture) VALUES(%s,%s,%s)''', (pump['temp'], pump['humi'], pump['soilMoisture']))

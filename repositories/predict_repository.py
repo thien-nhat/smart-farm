@@ -1,10 +1,11 @@
-import mysql.connector
+# import mysql.connector
+from db_connector import connection
+
 
 class PredictRepository:
     def __init__(self):
-        self.connection = mysql.connector.connect(host='sql12.freesqldatabase.com', user='sql12710166', password='HLGccp9xiC', database='sql12710166')
-
-
+        self.connection = connection
+        
     def create_predict(self, disease_history_data):
         query = "INSERT INTO diseasehistory (farm_id, disease_type,  image_path) VALUES (%s, %s, %s)"
         
