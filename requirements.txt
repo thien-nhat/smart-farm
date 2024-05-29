@@ -7,3 +7,4 @@ mysql-connector-python
 APScheduler
 pillow==10.3.0
 chardet
+flask-cors
