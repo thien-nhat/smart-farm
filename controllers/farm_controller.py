@@ -34,7 +34,6 @@ def create_farm():
             "status": "success",
             "message": 'farm created successfully',
             "data": {
-                "id": farm['id'],
                 "name": farm['name'],
                 "user_id": farm['user_id']
             }

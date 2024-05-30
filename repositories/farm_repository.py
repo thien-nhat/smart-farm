@@ -8,7 +8,7 @@ class FarmRepository:
     def create_farm(self, farm):
         self.connection = db_connector.create_connection()
         cursor = self.connection.cursor()
-        cursor.execute(''' INSERT INTO farms(temp, humi, soilMoisture) VALUES(%s,%s,%s)''', (farm['temp'], farm['humi'], farm['soilMoisture']))
+        cursor.execute(''' INSERT INTO farms(farm_name, user_id) VALUES(%s,%s)''', (farm['name'], farm['user_id']))
         self.connection.commit()
         cursor.close()
         self.connection.close()
