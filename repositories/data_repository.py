@@ -1,13 +1,9 @@
-# from flask_mysqldb import MySQL
-# from db_connector import connection
 import db_connector
 
 
 
 class DataRepository:
-    # def __init__(self):
-    #     # self.connection = mysql.connector.connect(host='sql12.freesqldatabase.com', user='sql12710166', password='HLGccp9xiC', database='sql12710166')
-    #     self.connection = connection.create_connection()
+
 
     def create_data(self, data):
         self.connection = db_connector.create_connection()

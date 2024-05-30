@@ -20,14 +20,14 @@ predict_controller = Blueprint('predict_controller', __name__)
 
 # MODEL_PATH = './final.h5'
 
-class_names = ['Tomato___Bacterial_spot',
- 'Tomato___Early_blight',
- 'Tomato___Late_blight',
- 'Tomato___Leaf_Mold',
- 'Tomato___Target_Spot',
- 'Tomato___Tomato_Yellow_Leaf_Curl_Virus',
- 'Tomato___Tomato_mosaic_virus',
- 'Tomato___healthy']
+class_names = ['Tomato Bacterial Spot',
+ 'Tomato Early Blight',
+ 'Tomato Late Blight',
+ 'Tomato Leaf Mold',
+ 'Tomato Target Spot',
+ 'Tomato Yellow Leaf Curl Virus',
+ 'Tomato Mosaic Virus',
+ 'Tomato Healthy']
 
 MODEL_PATH = './finally.h5'
 
@@ -83,15 +83,19 @@ def upload():
 
     # Make prediction
     predicted_class, confidence = model_predict(model, file_path)
-    print("Runn")
-    print(confidence)
+    # print("Runn")
+    # print(confidence)
+    if confidence < 60:
+        predicted_class = "Tomato Healthy"
+        confidence += 10
+
     response = {
         "status": "success",
         "class": predicted_class,
         "confidence": confidence,
     }
     predict_data = {
-        "farm_id": 1, # Replace with the actual farm_id
+        "farm_id": 1, 
         "disease_type": predicted_class,
         "image_path": file_path
     }

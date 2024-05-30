@@ -1,11 +1,7 @@
-# import mysql.connector
-# from db_connector import connection
 import db_connector
 
 
 class PredictRepository:
-    # def __init__(self):
-    #     self.connection = connection.create_connection()
         
     def create_predict(self, disease_history_data):
         self.connection = db_connector.create_connection()

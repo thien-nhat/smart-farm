@@ -1,12 +1,10 @@
 # from flask_mysqldb import MySQL
 # import mysql.connector
-# from db_connector import connection
 import db_connector
 
 
 class UserRepository:
-    # def __init__(self):
-    #     self.connection = connection.create_connection()
+
         
     def create_user(self, user_data):
         self.connection = db_connector.create_connection()

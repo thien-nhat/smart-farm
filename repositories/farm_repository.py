@@ -1,12 +1,9 @@
-# from flask_mysqldb import MySQL
-# import mysql.connector
+
 import db_connector 
 
 
 # Need to replace all information
 class FarmRepository:
-    # def __init__(self):
-    #     self.connection = connection.create_connection()
 
     def create_farm(self, farm):
         self.connection = db_connector.create_connection()
