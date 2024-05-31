@@ -6,6 +6,7 @@ import json
 import tensorflow as tf
 import numpy as np
 from services.predict_service import PredictService
+from datetime import datetime, timedelta
 
 predict_controller = Blueprint('predict_controller', __name__)
 
@@ -54,12 +55,13 @@ predict_service = PredictService()
 def get_all_disease_history():
     disease_history_records = predict_service.get_all_predict()
     formatted_records = []
+    time_format = "%Y-%m-%d %H:%M:%S"
     for record in disease_history_records:
         formatted_records.append({
             "id": record[0],
             "farm_id": record[1],
             "disease_type": record[2],
-            "capture_date": record[3].isoformat(),
+            "capture_date": datetime.strptime(record[3].isoformat(), time_format) + timedelta(hours=14, minutes=47),
             "image_path": record[4]
         })
     response = {

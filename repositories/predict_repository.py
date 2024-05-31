@@ -18,7 +18,7 @@ class PredictRepository:
         # Your code to get all disease history records goes here
         self.connection = db_connector.create_connection()
         cursor = self.connection.cursor()
-        cursor.execute(''' SELECT * FROM diseasehistory ''')
+        cursor.execute(''' SELECT * FROM diseasehistory ORDER BY capture_date DESC ''')
         disease_history = cursor.fetchall()
         cursor.close()
         self.connection.close()

@@ -12,6 +12,7 @@ from controllers.data_controller import data_controller #api service
 from controllers.farm_controller import farm_controller #api service
 from controllers.pump_controller import pump_controller #api service
 from controllers.predict_controller import predict_controller #api servicepump_controller #api service
+from controllers.nof_controller import nof_controller #api servicepump_controller #api service
 
 
 app = Flask(__name__)
@@ -21,6 +22,7 @@ app.register_blueprint(data_controller) # api service
 app.register_blueprint(farm_controller) # api service
 app.register_blueprint(pump_controller) # api service
 app.register_blueprint(predict_controller) # api service
+app.register_blueprint(nof_controller) # api service
 
 app.config['JWT_SECRET_KEY'] = 'thesis-secret-key' 
 jwt = JWTManager(app)
@@ -62,6 +64,7 @@ def get_latest_data():
 # app.run(host='localhost', port=5000)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=10000, debug=False)
+    app.run(host='localhost', port=5000, debug=True)
+    # app.run(host="0.0.0.0", port=10000, debug=False)
 
 

@@ -19,5 +19,3 @@ class FarmService:
     def delete_farm(self, farm_id):
         return self.farm_repository.delete_farm(farm_id)
     
-    def authenticate_farm(self, email, password):
-        return self.farm_repository.authenticate_farm(email, password)
