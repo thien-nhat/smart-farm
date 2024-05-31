@@ -33,7 +33,7 @@ def create_nof():
             "status": "success",
             "message": 'nof created successfully',
             "data": {
-                "message": nof['name']
+                "message": nof['message']
             }
         }
     

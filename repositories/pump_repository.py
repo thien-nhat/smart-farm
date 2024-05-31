@@ -4,9 +4,10 @@ import db_connector
 class PumpRepository:
         
     def create_pump(self, pump):
-        self.connection    = db_connector.create_connection()
+        self.connection = db_connector.create_connection()
         cursor = self.connection.cursor()
-        cursor.execute(''' INSERT INTO pump(temp, humi, soilMoisture) VALUES(%s,%s,%s)''', (pump['temp'], pump['humi'], pump['soilMoisture']))
+        cursor.execute(''' INSERT INTO pump(pump_name, farm_id, status, temp, humi, soilMoisture) VALUES(%s,%s,%s,%s,%s,%s)''', 
+                        (pump['pump_name'], pump['farm_id'], pump['status'], pump['temp'], pump['humi'], pump['soilMoisture']))
         self.connection.commit()
         cursor.close()
         self.connection.close()

@@ -8,7 +8,7 @@ class NofRepository:
     def create_nof(self, nof):
         self.connection = db_connector.create_connection()
         cursor = self.connection.cursor()
-        cursor.execute(''' INSERT INTO notification(message) VALUES(%s)''', (nof['message']))
+        cursor.execute(''' INSERT INTO notification(message) VALUES(%s)''', (nof['message'],))  # note the comma
         self.connection.commit()
         cursor.close()
         self.connection.close()
