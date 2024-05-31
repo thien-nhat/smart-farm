@@ -46,8 +46,11 @@ def fetch_data():
         data = response.json()
         # Store or process the data as needed
         global latest_data
-        latest_data = data
-        print(f"Fetched data: {latest_data}")
+        if data != latest_data:
+            latest_data = data
+            print(f"Fetched data: {latest_data}")
+        else:
+            print("Data is the same as the latest data. No new data fetched.")
     except requests.RequestException as e:
         print(f"Error fetching data !!!")
 
