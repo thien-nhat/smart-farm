@@ -16,7 +16,7 @@ class DataRepository:
     def get_all_data(self):
         self.connection = db_connector.create_connection()
         cursor = self.connection.cursor()
-        cursor.execute(''' SELECT * FROM data ''')
+        cursor.execute(''' SELECT * FROM data ORDER BY ts DESC ''')
         data = cursor.fetchall()
         cursor.close()
         self.connection.close()
