@@ -7,6 +7,22 @@ import datetime
 pump_controller = Blueprint('pump_controller', __name__)
 pump_service = PumpService()
 
+@pump_controller.route('/nof', methods=['GET'])
+def get_all_nof():
+    nofs = pump_service.get_all_nof()
+    formatted_nofs = []
+    for nof in nofs:
+        formatted_nofs.append({
+            "id": nof[0],
+            "name": nof[1]
+        })
+    response = {
+        "status": "success",
+        "result": len(formatted_nofs),
+        "data": formatted_nofs
+    }
+    return json.dumps(response)
+
 @pump_controller.route('/pump', methods=['POST'])
 def create_pump():
     pump = request.get_json()

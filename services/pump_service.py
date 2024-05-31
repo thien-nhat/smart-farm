@@ -8,7 +8,8 @@ class PumpService:
         self.pump_repository.create_pump(pump_data)
     def get_pump(self, pump_id):
         return self.pump_repository.get_pump(pump_id)
-
+    def get_all_pump(self):
+            return self.pump_repository.get_all_pump()
     def update_pump(self, pump_id, pump_data):
         return self.pump_repository.update_pump(pump_id, pump_data)
 
