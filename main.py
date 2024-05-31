@@ -50,9 +50,9 @@ def fetch_data():
         data = response.json()
         # Store or process the data as needed
         data1 = {
-                'temp': data['temperature']['value'],
-                'humi': data['humidity']['value'],
-                'soilMoisture': data['soilMoisture']['value']
+                'temp': data['temperature'][0]['value'],
+                'humi': data['humidity'][0]['value'],
+                'soilMoisture': data['soilMoisture'][0]['value']
         }
         global latest_data
         if data1 != latest_data:
