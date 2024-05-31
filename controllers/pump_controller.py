@@ -7,9 +7,9 @@ import datetime
 pump_controller = Blueprint('pump_controller', __name__)
 pump_service = PumpService()
 
-@pump_controller.route('/nof', methods=['GET'])
+@pump_controller.route('/pump', methods=['GET'])
 def get_all_nof():
-    nofs = pump_service.get_all_nof()
+    nofs = pump_service.get_all_pump()
     formatted_nofs = []
     for nof in nofs:
         formatted_nofs.append({
@@ -31,11 +31,6 @@ def create_pump():
     response = {
             "status": "success",
             "message": 'pump created successfully',
-            "pump": {
-                "temp": pump['temp'],
-                "humi": pump['humi'],
-                "soilMosdule": pump['soilMosdule']
-            }
         }
     
     return json.dumps(response)
