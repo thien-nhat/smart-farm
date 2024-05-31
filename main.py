@@ -33,7 +33,7 @@ API_URL = "https://demo.thingsboard.io/api/plugins/telemetry/DEVICE/4c2fe410-cd7
 BEARER_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ2YW4ucGhhbWRpbmh2YW4yMkBoY211dC5lZHUudm4iLCJ1c2VySWQiOiI1NGI3Njg1MC0xYjM0LTExZWYtYTQzNS1hYjNhMWQ1MzVmM2UiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sInNlc3Npb25JZCI6ImM2MWQwZGNjLTZmMDItNDdlYi1hMzA1LWU4NDZhOGNjNzk3ZiIsImV4cCI6MTcxODUwOTcyNCwiaXNzIjoidGhpbmdzYm9hcmQuaW8iLCJpYXQiOjE3MTY3MDk3MjQsImZpcnN0TmFtZSI6IlbEgk4iLCJsYXN0TmFtZSI6IlBI4bqgTSDEkMOMTkgiLCJlbmFibGVkIjp0cnVlLCJwcml2YWN5UG9saWN5QWNjZXB0ZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwidGVuYW50SWQiOiI2NTMzYWEzMC1iOGNiLTExZWQtOWIxNS1kZDJkYWM1MDU0OGYiLCJjdXN0b21lcklkIjoiMTM4MTQwMDAtMWRkMi0xMWIyLTgwODAtODA4MDgwODA4MDgwIn0.IDusyZ1K9xDDzyAI29F4ot5UFO5DwtsKFdydci233CJNl26qJrQ4LmMpLjET5oeULwVIBQWKfJq_Zxy0vXH76g"  # Replace with your actual Bearer token
 
 # Variable to store the latest data
-latest_data = {"temp": None, "humidity": None}
+latest_data = {"temp": None, "humi": None, "soilMoisture": None}
 
 
 from services.data_service import DataService
@@ -49,9 +49,14 @@ def fetch_data():
         response.raise_for_status()  # Raise an exception for HTTP errors
         data = response.json()
         # Store or process the data as needed
+        data1 = {
+                'temp': data['temperature']['value'],
+                'humi': data['humidity']['value'],
+                'soilMoisture': data['soilMoisture']['value']
+        }
         global latest_data
-        if data != latest_data:
-            latest_data = data
+        if data1 != latest_data:
+            latest_data = data1
             print(f"Fetched data: {latest_data}")
             data_service.create_data(data)  # Call the create_data method
         else:
