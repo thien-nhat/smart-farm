@@ -55,13 +55,19 @@ predict_service = PredictService()
 def get_all_disease_history():
     disease_history_records = predict_service.get_all_predict()
     formatted_records = []
-    time_format = "%Y-%m-%d %H:%M:%S"
     for record in disease_history_records:
+        # Convert string to datetime
+        datetime_obj = datetime.fromisoformat(record[3].isoformat())
+        # Add 14 hours and 47 minutes
+        new_time = datetime_obj + timedelta(hours=14, minutes=47)
+        # Convert datetime back to string
+        new_time_str = new_time.isoformat()
+
         formatted_records.append({
             "id": record[0],
             "farm_id": record[1],
             "disease_type": record[2],
-            "capture_date": datetime.strptime(record[3].isoformat(), time_format) + timedelta(hours=14, minutes=47),
+            "capture_date": new_time_str,
             "image_path": record[4]
         })
     response = {
