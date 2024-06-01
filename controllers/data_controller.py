@@ -1,8 +1,7 @@
 from flask import Blueprint, request
 from services.data_service import DataService
 import json
-import datetime
-
+from datetime import datetime, timedelta
 
 data_controller = Blueprint('data_controller', __name__)
 data_service = DataService()
@@ -12,16 +11,23 @@ def get_all_data():
     data = data_service.get_all_data()
     formatted_data = []
     for i in range(len(data)):
-        if isinstance(data[i][4], datetime.date):
-            data[i] = list(data[i])
-            data[i][4] = data[i][4].isoformat()
-            data[i] = tuple(data[i])
+         # Convert string to datetime
+        datetime_obj = datetime.fromisoformat(data[i][4].isoformat())
+        # Add 14 hours and 47 minutes
+        new_time = datetime_obj + timedelta(hours=14, minutes=47)
+        # Convert datetime back to string
+        new_time_str = new_time.isoformat()
+
+        # if isinstance(data[i][4], datetime.date):
+        #     data[i] = list(data[i])
+        #     data[i][4] = data[i][4].isoformat()
+        #     data[i] = tuple(data[i])
         formatted_data.append({
             "id": data[i][0],
             "temperature": data[i][1],
             "humidity": data[i][2],
             "soilMoisture": data[i][3],
-            "ts": data[i][4]
+            "ts": new_time_str
         })
     
     response = {

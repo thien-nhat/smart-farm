@@ -8,7 +8,7 @@ class DataRepository:
     def create_data(self, data):
         self.connection = db_connector.create_connection()
         cursor = self.connection.cursor()
-        cursor.execute(''' INSERT INTO data(temp, humi, soilMoisture) VALUES(%s,%s,%s)''', (data['temp'], data['humi'], data['soilMoisture']))
+        cursor.execute(''' INSERT INTO data(temperature, humidity, soilMoisture) VALUES(%s,%s,%s)''', (data['temp'], data['humi'], data['soilMoisture']))
         self.connection.commit()
         cursor.close()
         self.connection.close()

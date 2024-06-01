@@ -58,7 +58,12 @@ def fetch_data():
         if data1 != latest_data:
             latest_data = data1
             print(f"Fetched data: {latest_data}")
-            data_service.create_data(data)  # Call the create_data method
+            
+            # data_service.create_data(data)  # Call the create_data method
+            if 'temp' in data1 and 'humi' in data1 and 'soilMoisture' in data1:
+                data_service.create_data(data1)  # Call the create_data method
+            else:
+                print("Fetched data does not contain 'temp', 'humi', or 'soilMoisture'.")
         else:
             print("Data is the same as the latest data. No new data fetched.")
     except requests.RequestException as e:
@@ -77,6 +82,7 @@ def get_latest_data():
 # app.run(host='localhost', port=5000)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=10000, debug=False)
+    # app.run(host="0.0.0.0", port=10000, debug=False)
+    app.run(host='localhost', port=5000)
 
 
