@@ -8,13 +8,14 @@ pump_controller = Blueprint('pump_controller', __name__)
 pump_service = PumpService()
 
 @pump_controller.route('/pump', methods=['GET'])
-def get_all_nof():
+def get_all_pump():
     nofs = pump_service.get_all_pump()
     formatted_nofs = []
     for nof in nofs:
         formatted_nofs.append({
             "id": nof[0],
-            "name": nof[1]
+            "name": nof[1],
+            "status": nof[3]
         })
     response = {
         "status": "success",
