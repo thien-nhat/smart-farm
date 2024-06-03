@@ -55,7 +55,13 @@ def fetch_data():
                 'soilMoisture': data['soilMoisture'][0]['value']
         }
         global latest_data
-        if data1 != latest_data:
+        latest_data_db = data_service.get_latest_data()
+        data2 = {
+                'temp': latest_data_db[1],
+                'humi': latest_data_db[2],
+                'soilMoisture': latest_data_db[3]
+        }
+        if data1 != latest_data and data1 != data2:
             latest_data = data1
             print(f"Fetched data: {latest_data}")
             
@@ -82,6 +88,7 @@ def get_latest_data():
 # app.run(host='localhost', port=5000)
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=10000, debug=False)
+    app.run(host='localhost', port=5000)
+    # app.run(host="0.0.0.0", port=10000, debug=False)
 
 

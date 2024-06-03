@@ -11,7 +11,10 @@ class DataService:
         return self.data_repository.get_all_data()
     def get_data(self, id):
         return self.data_repository.get_data(id)
-
+    def get_latest_data(self):
+            return self.data_repository.get_latest_data()
+    def get_daily_average(self):
+            return self.data_repository.get_daily_average()
     def update_data(self, id, data):
         return self.data_repository.update_data(id, data)
 

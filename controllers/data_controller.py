@@ -17,16 +17,36 @@ def get_all_data():
         new_time = datetime_obj + timedelta(hours=14, minutes=47)
         # Convert datetime back to string
         new_time_str = new_time.isoformat()
-
-        # if isinstance(data[i][4], datetime.date):
-        #     data[i] = list(data[i])
-        #     data[i][4] = data[i][4].isoformat()
-        #     data[i] = tuple(data[i])
         formatted_data.append({
             "id": data[i][0],
             "temperature": data[i][1],
             "humidity": data[i][2],
             "soilMoisture": data[i][3],
+            "ts": new_time_str
+        })
+    
+    response = {
+        "status": "success",
+        "result": len(formatted_data),
+        "data": formatted_data
+    }
+    return json.dumps(response)
+
+@data_controller.route('/avg-data', methods=['GET'])
+def get_daily_average():
+    data = data_service.get_daily_average()
+    formatted_data = []
+    for i in range(len(data)):
+         # Convert string to datetime
+        datetime_obj = datetime.fromisoformat(data[i][3].isoformat())
+        # Add 14 hours and 47 minutes
+        new_time = datetime_obj + timedelta(hours=14, minutes=47)
+        # Convert datetime back to string
+        new_time_str = new_time.isoformat()
+        formatted_data.append({
+            "temperature": float(data[i][0]),
+            "humidity": float(data[i][1]),
+            "soilMoisture": float(data[i][2]),
             "ts": new_time_str
         })
     
@@ -54,20 +74,35 @@ def create_data():
     
     return json.dumps(response)
 
-@data_controller.route('/api/data/<int:data_id>', methods=['GET'])
-def get_data(data_id):
-    data = data_service.get_data(data_id)
-    print(data)
-    response = {
-        "status": "success",
-        "data": {
-            "id": data[0],
-            "name": data[1],
-            "email": data[2],
-            "created_at": data[4].isoformat() if isinstance(data[4], datetime.date) else data[4]
-        }
-    }
-    return json.dumps(response)
+# @data_controller.route('/api/last-data', methods=['GET'])
+# def get_data():
+#     data = data_service.get_latest_data()
+#     print(data)
+#     response = {
+#         "status": "success",
+#         "data": {
+#             "temp": data[0],
+#             "humi": data[1],
+#             "soilMosdule": data[2],
+#             "created_at": data[4].isoformat() if isinstance(data[4], datetime.date) else data[4]
+#         }
+#     }
+#     return json.dumps(response)
+
+# @data_controller.route('/api/data/<int:data_id>', methods=['GET'])
+# def get_data(data_id):
+#     data = data_service.get_data(data_id)
+#     print(data)
+#     response = {
+#         "status": "success",
+#         "data": {
+#             "id": data[0],
+#             "name": data[1],
+#             "email": data[2],
+#             "created_at": data[4].isoformat() if isinstance(data[4], datetime.date) else data[4]
+#         }
+#     }
+#     return json.dumps(response)
 
 @data_controller.route('/api/data/<int:data_id>', methods=['PUT'])
 def update_data(data_id):

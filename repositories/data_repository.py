@@ -21,7 +21,26 @@ class DataRepository:
         cursor.close()
         self.connection.close()
         return data
-
+    def get_latest_data(self):
+        self.connection = db_connector.create_connection()
+        cursor = self.connection.cursor()
+        query = "SELECT * FROM data ORDER BY ts DESC LIMIT 1"
+        cursor.execute(query)
+        result = cursor.fetchone()
+        self.connection.close()
+        return result
+    def get_daily_average(self):
+        self.connection = db_connector.create_connection()
+        cursor = self.connection.cursor()
+        query = """
+        SELECT AVG(temperature) as temperature, AVG(humidity) as humidity, AVG(soilMoisture) as soilMoisture,  DATE(ts) as date
+        FROM data
+        GROUP BY DATE(ts)
+        """
+        cursor.execute(query)
+        result = cursor.fetchall()
+        self.connection.close()
+        return result
     def get_data(self, id):
         self.connection = db_connector.create_connection()
         cursor = self.connection.cursor()
