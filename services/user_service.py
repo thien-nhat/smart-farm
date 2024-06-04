@@ -15,5 +15,5 @@ class UserService:
     def delete_user(self, user_id):
         return self.user_repository.delete_user(user_id)
     
-    def authenticate_user(self, email, password):
-        return self.user_repository.authenticate_user(email, password)
+    def authenticate_user(self, username, password):
+        return self.user_repository.authenticate_user(username, password)

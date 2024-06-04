@@ -61,30 +61,31 @@ def delete_user(user_id):
 
 @user_controller.route('/login', methods=['POST'])
 def login():
-    email = request.json.get('email', None)
+    username = request.json.get('username', None)
     password = request.json.get('password', None)
-    user = user_service.authenticate_user(email, password)
+    user = user_service.authenticate_user(username, password)
     if user:
-        access_token = create_access_token(identity={'id': user[0], 'email': email})
+        access_token = create_access_token(identity={'id': user[0], 'username': username})
         response = {
             "status": "success",
             "token": access_token,
             "data": {
                 "id": user[0],
                 "name": user[1],
-                "email": user[2],
-                "created_at": user[4].isoformat() if isinstance(user[4], datetime.date) else user[4]
+                "username": user[2],
+                "email": user[3],
+                "created_at": user[5].isoformat() if isinstance(user[4], datetime.date) else user[4]
             }
         }
-        em = EmailMessage()
-        em['From'] = "Smart Farm"
-        em['To'] = email
-        em['subject'] = 'Login Notification'
-        em.set_content('""" You have logged in to the system """')
-        context = ssl.create_default_context()
-        with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
-            smtp.login(email_sender, email_password)
-            smtp.sendmail(email_sender, email, em.as_string())
+        # em = EmailMessage()
+        # em['From'] = "Smart Farm"
+        # em['To'] =  user[3]
+        # em['subject'] = 'Login Notification'
+        # em.set_content('""" You have logged in to the system """')
+        # context = ssl.create_default_context()
+        # with smtplib.SMTP_SSL('smtp.gmail.com', 465, context=context) as smtp:
+        #     smtp.login(email_sender, email_password)
+        #     smtp.sendmail(email_sender, email, em.as_string())
             
         return json.dumps(response)
     else:

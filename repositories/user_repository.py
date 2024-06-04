@@ -38,10 +38,10 @@ class UserRepository:
         cursor.close()
         self.connection.close()
 
-    def authenticate_user(self, email, password):
+    def authenticate_user(self, username, password):
         self.connection = db_connector.create_connection()
         cursor = self.connection.cursor()
-        cursor.execute(''' SELECT * FROM users WHERE email = %s AND password = %s''', (email, password))
+        cursor.execute(''' SELECT * FROM users WHERE username = %s AND password = %s''', (username, password))
         user = cursor.fetchone()
         cursor.close()
         self.connection.close()
