@@ -24,6 +24,13 @@ def get_all_pump():
     }
     return json.dumps(response)
 
+@pump_controller.route('/schedule', methods=['POST'])
+def schedule_pump():
+    start_time = request.json['start_time']
+    end_time = request.json['end_time']
+    pump_service.schedule_pump(start_time, end_time)
+    return 'Pump scheduled successfully', 200
+
 @pump_controller.route('/pump', methods=['POST'])
 def create_pump():
     pump = request.get_json()
