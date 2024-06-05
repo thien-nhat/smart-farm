@@ -52,8 +52,8 @@ def get_pump(pump_id):
         "pump": {
             "id": pump[0],
             "name": pump[1],
-            "email": pump[2],
-            "created_at": pump[4].isoformat() if isinstance(pump[4], datetime.date) else pump[4]
+            "farm_id": pump[2],
+            "status": pump[3]
         }
     }
     return json.dumps(response)

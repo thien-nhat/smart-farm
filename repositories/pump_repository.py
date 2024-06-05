@@ -37,10 +37,14 @@ class PumpRepository:
         self.connection.close()
         return pump
 
-    def update_pump(self, id, pump):
+    def update_pump(self, id, changes):
         self.connection = db_connector.create_connection()
         cursor = self.connection.cursor()
-        cursor.execute(''' UPDATE pump SET temp = %s, humi = %s, soilMoisture = %s WHERE id = %s''', (pump['temp'], pump['humi'], pump['soilMoisture'], id))
+
+        sql = "UPDATE pumps SET " + ", ".join(f"{key} = %s" for key in changes.keys()) + " WHERE id = %s"
+        params = list(changes.values()) + [id]
+
+        cursor.execute(sql, params)
         self.connection.commit()
         cursor.close()
         self.connection.close()

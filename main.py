@@ -37,8 +37,10 @@ latest_data = {"temp": None, "humi": None, "soilMoisture": None}
 
 
 from services.data_service import DataService
+from services.pump_service import PumpService
 
 data_service = DataService()
+# pump_service = PumpService()
 
 def fetch_data():
     headers = {
@@ -56,6 +58,7 @@ def fetch_data():
         }
         global latest_data
         latest_data_db = data_service.get_latest_data()
+        # pump_service.check_and_turn_on_pump(1, latest_data_db[3])
         data2 = {
                 'temp': latest_data_db[1],
                 'humi': latest_data_db[2],
@@ -88,7 +91,7 @@ def get_latest_data():
 # app.run(host='localhost', port=5000)
 
 if __name__ == '__main__':
-    # app.run(host='localhost', port=5000, debug=True)
-    app.run(host="0.0.0.0", port=10000, debug=False)
+    app.run(host='localhost', port=5000, debug=True)
+    # app.run(host="0.0.0.0", port=10000, debug=False)
 
 
